@@ -1,0 +1,17 @@
+{
+  "id": "/TimeBlock",
+  "name": "TimeBlock",
+  "short_name": "쌓기시간",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

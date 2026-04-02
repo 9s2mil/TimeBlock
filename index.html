@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="./manifest.json" />
+    <title>Time Block</title>
+    <link rel="stylesheet" href="TimeBlock.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h2 id="time">
+            <span id="dateText"></span>
+            <button class="daybutton" onclick="prevDay()">⇦</button>
+            <button class="tobutton" onclick="goToday()">🌟</button>
+            <button class="daybutton" onclick="nextDay()">⇨</button>
+        </h2>
+        <table id="table"></table>
+    </div>
+
+
+<script src="TimeBlock.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(reg => console.log("SW 등록 성공:", reg))
+            .catch(err => console.error("SW 등록 실패:", err));
+    }
+</script>
+</body>
+
+</html>
