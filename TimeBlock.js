@@ -24,7 +24,7 @@ function updateTime() {
   const ss = String(now.getSeconds()).padStart(2, '0')
 
   document.getElementById("dateText").innerText =
-    `${yyyy}년 ${mm}월 ${dd}일 (${day})\n[ ${hh}:${min}:${ss} ]`
+    `${yyyy}년 ${mm}월 ${dd}일\n(${day}) ${hh}:${min}:${ss}`
 }
 
 function prevDay() {
