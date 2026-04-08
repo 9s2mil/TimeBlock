@@ -1,5 +1,5 @@
 let currentDate = new Date()
-let isEditMode = false
+let isEditMode = true
 const days = ["일", "월", "화", "수", "목", "금", "토"]
 function getDateKey(date) {
   const yyyy = date.getFullYear()
@@ -199,6 +199,8 @@ function renderTable() {
 }
 
 createTable()
+document.getElementById("table").classList.remove("locked")
+updateTime()
 
 function scrollToCurrentHour() {
   const now = new Date()

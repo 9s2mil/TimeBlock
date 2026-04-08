@@ -157,7 +157,10 @@ tr.now {
 
 #table.locked {
   pointer-events: none;
-  opacity: 0.6;
+}
+
+#table:not(.locked) {
+  opacity: 0.7;
 }
 #editState.on {
   color: #ff2d2d;
