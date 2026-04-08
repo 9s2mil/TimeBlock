@@ -1,4 +1,5 @@
 let currentDate = new Date()
+let isEditMode = false
 const days = ["일", "월", "화", "수", "목", "금", "토"]
 function getDateKey(date) {
   const yyyy = date.getFullYear()
@@ -23,8 +24,27 @@ function updateTime() {
   const min = String(now.getMinutes()).padStart(2, '0')
   const ss = String(now.getSeconds()).padStart(2, '0')
 
-  document.getElementById("dateText").innerText =
-    `${yyyy}년 ${mm}월 ${dd}일\n(${day}) ${hh}:${min}:${ss}`
+  const stateText = isEditMode ? "ON" : "OFF"
+
+  document.getElementById("dateText").innerHTML =
+    `${yyyy}년 ${mm}월 ${dd}일(${day})<br>
+     현재시각 : ${hh}:${min}:${ss}
+     <span id="editState" class="${isEditMode ? 'on' : 'off'}">
+       ${stateText}
+     </span>`
+}
+
+function toggleEditMode() {
+  isEditMode = !isEditMode
+
+  const table = document.getElementById("table")
+
+  if (isEditMode) {
+    table.classList.remove("locked")
+  } else {
+    table.classList.add("locked")
+  }
+  updateTime()
 }
 
 function prevDay() {
@@ -47,6 +67,9 @@ function goToday() {
 }
 
 setInterval(updateTime, 1000)
+
+document.getElementById("dateText").addEventListener("click", toggleEditMode)
+
 updateTime()
 
 function createTable() {
@@ -79,6 +102,7 @@ function createTable() {
 
     // 👉 터치 시작
     tdTime.addEventListener("touchstart", () => {
+      if (!isEditMode) return
       isLongPress = false
 
       pressTimer = setTimeout(() => {
@@ -100,6 +124,7 @@ function createTable() {
 
     // 👉 터치 끝
     tdTime.addEventListener("touchend", () => {
+      if (!isEditMode) return
       clearTimeout(pressTimer)
 
       // 👉 롱프레스 아니면 클릭 처리
@@ -135,6 +160,7 @@ function createTable() {
       ""
 
     input1.addEventListener("input", () => {
+      if (!isEditMode) return
       localStorage.setItem(key1, input1.value)
     })
 
@@ -155,6 +181,7 @@ function createTable() {
       ""
 
     input2.addEventListener("input", () => {
+      if (!isEditMode) return
       localStorage.setItem(key2, input2.value)
     })
 
